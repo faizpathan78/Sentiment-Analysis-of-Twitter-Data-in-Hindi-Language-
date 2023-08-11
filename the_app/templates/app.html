@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Twitter Sentiment Analyzer App</title>
+    <style>
+        body{
+            background-color: aliceblue; 
+        } 
+    </style>
+</head>
+
+<body>
+ 
+    <!-- As a heading -->
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">ML - Projects</span>
+        </div>
+    </nav>
+    <div class="container text-center pt-0">
+        <img src="/static/image.jpg" alt="Responsive image" height="250" width="500">
+    </div>
+    <div class="container text-center pt-2">
+        <h1>Twitter Sentiment Analyzer App</h1>
+        <button onclick="show_text_form()" class="btn btn-primary">Enter Tweet as Text</button>
+        <br>
+        <hr>
+        <button onclick="show_username_input_field()" class="btn btn-primary">Grab Tweets from Twitter Handle</button>
+        <form id="username_input_field" action="/predict_with_twitter_handle" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3>Enter Twitter Handle: (It will take 10 recent tweets) </h3><input type="text" name="twitter_handle" size="50"  autofocus>
+            <br>
+            <div class="container pt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+        <form id="text_form" action="/predict_with_text" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3>Enter Text of Tweet: </h3><input type="text" name="text_of_tweet" size="50" style="padding: 0 0 150px 0;" autofocus>
+            <br>
+            <div class="container pt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="container text-center pt-5">
+        <hr>
+        <h2>Project description:</h2>
+        <br>
+        <h3>Please enter the <b>Text of the Tweet</b> and this intelligent web application will try to predict whether the Tweet is <b>Appropriate</b> or not, with the help of Machine Learning Algorithms.</h3>
+    </div>
+    <br>
+
+    <script>
+        document.getElementById("text_form").style.display = "none";
+        document.getElementById("username_input_field").style.display = "none";
+        
+        function show_text_form(){
+            document.getElementById("username_input_field").style.display = "none";
+            document.getElementById("text_form").style.display = "inline";
+        }
+
+        function show_username_input_field(){
+            document.getElementById("text_form").style.display = "none";
+            document.getElementById("username_input_field").style.display = "inline";
+        }
+    </script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
